@@ -2,7 +2,7 @@
 #
 # Provision a Gentoo machine.
 
-if [[ ${EUID} != 0 ]] ; then
+if [[ ${EUID} != 0 ]]; then
   echo "This script must be run as root"
   exit 1
 fi
@@ -12,7 +12,14 @@ PACKAGES_FILE='packages'
 echo "[+] Downloading configuration files"
 # Cloning won't work until git is recompiled (later)
 wget -q https://github.com/brenj/dotfiles/archive/master.zip
-unzip -qq master.zip && cd dotfiles-master/gentoo
+unzip -qq master.zip
+mv dotfiles-master dotfiles
+rm master.zip
+
+wget -q https://github.com/brenj/bootstrap/archive/master.zip
+unzip -qq master.zip
+rm master.zip
+cd bootstrap-master/linux/gentoo
 
 rm -rf /etc/portage/package.use
 
@@ -29,7 +36,13 @@ while read -r package; do
   emerge --quiet "${package}" &>/dev/null
 done <"${PACKAGES_FILE}"
 
-echo "[+] Cleaning up"
 cd
-rm master.zip
-rm -rf dotfiles-master
+
+echo "[+] Installing and configuring dev tools"
+for script in scripts/*; do
+  echo "Running script ${script}"
+  [ -f "${script}" ] && [ -x "${script}" ] && "${script}"
+done
+
+echo "[+] Cleaning up"
+rm -rf bootstrap-master
