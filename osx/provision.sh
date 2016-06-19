@@ -7,12 +7,12 @@ if [[ ${EUID} != 0 ]] ; then
   exit 1
 fi
 
-FORMULAE_FILE='formulae'
+PACKAGES_FILE='packages'
 
 xcode-select --install &>/dev/null
 
-echo "[+] Installing formula"
-while read -r formula; do
-  echo "Brewing formula ${formula}"
-  brew install "${formula}" &>/dev/null
-done <"${FORMULAE_FILE}"
+echo "[+] Installing packages"
+while read -r package; do
+  echo "Brewing formula ${package}"
+  brew install "${package}" &>/dev/null
+done <"${PACKAGES_FILE}"
