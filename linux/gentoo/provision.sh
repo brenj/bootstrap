@@ -17,19 +17,20 @@ mv bootstrap-master bootstrap
 rm master.zip
 cd bootstrap/linux/gentoo
 
-rm -rf /etc/portage/package.use
+sudo rm -rf /etc/portage/package.use
+sudo rm -rf /etc/portage/package.accept_keywords
 
 echo "[+] Installing Gentoo configuration files"
-mv package.use /etc/portage/package.use
-cp package.accept_keywords/* /etc/portage/package.accept_keywords
+sudo cp package.use /etc/portage
+sudo cp package.accept_keywords /etc/portage
 
 echo "[+] Updating the portage tree"
-emerge-webrsync --quiet
+sudo emerge-webrsync --quiet
 
 echo "[+] Installing packages"
 while read -r package; do
   echo "Emerging package ${package}"
-  emerge --quiet "${package}" &>/dev/null
+  sudo emerge --quiet "${package}" &>/dev/null
 done <"${PACKAGES_FILE}"
 
 cd
