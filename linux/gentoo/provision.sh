@@ -36,7 +36,7 @@ done <"${PACKAGES_FILE}"
 cd
 
 echo "[+] Installing and configuring dev tools"
-for script in scripts/*; do
+for script in bootstrap/scripts/*; do
   echo "Running script ${script}"
   [ -f "${script}" ] && [ -x "${script}" ] && "${script}"
 done
