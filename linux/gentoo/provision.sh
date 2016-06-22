@@ -13,8 +13,9 @@ rm master.zip
 
 wget -q https://github.com/brenj/bootstrap/archive/master.zip
 unzip -qq master.zip
+mv bootstrap-master bootstrap
 rm master.zip
-cd bootstrap-master/linux/gentoo
+cd bootstrap/linux/gentoo
 
 rm -rf /etc/portage/package.use
 
