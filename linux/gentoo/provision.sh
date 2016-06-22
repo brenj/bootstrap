@@ -40,6 +40,3 @@ for script in bootstrap/scripts/*; do
   echo "Running script ${script}"
   [ -f "${script}" ] && [ -x "${script}" ] && "${script}"
 done
-
-echo "[+] Cleaning up"
-rm -rf bootstrap-master
