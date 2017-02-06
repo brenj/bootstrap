@@ -1,2 +1,2 @@
 # bootstrap
-Bootstrap a development environment.
+Bootstrap my development environment.
