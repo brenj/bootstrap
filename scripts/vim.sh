@@ -7,7 +7,7 @@ STARTING_DIR="$(pwd)"
 cd
 
 echo "[+] Configuring vim"
-mkdir .vim/bundle
+mkdir -p .vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
 vim +PluginInstall +qall &>/dev/null
 cd .vim/bundle/YouCompleteMe
