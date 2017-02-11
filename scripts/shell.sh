@@ -27,7 +27,7 @@ ln -sf dotfiles/.gvimrc .gvimrc
 ln -sf dotfiles/.tmux.conf .tmux.conf
 ln -sf dotfiles/.vimrc .vimrc
 ln -sf dotfiles/.vim .vim
-ln -sf dotfiles/.xmonad .xmonad
+ln -sfh dotfiles/.xmonad .xmonad
 
 echo "[+] Sourcing files"
 . .bashrc
