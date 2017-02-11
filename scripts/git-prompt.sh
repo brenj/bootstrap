@@ -7,6 +7,7 @@ STARTING_DIR="$(pwd)"
 
 cd
 
+echo "[+] Installing git-prompt"
 wget -O .git-prompt.sh -q \
 "${RAW_URL}"/git/git/master/contrib/completion/git-prompt.sh
 
