@@ -1,7 +1,4 @@
-.PHONY: dotfiles gentoo node osx
-
-dotfiles:
-	scripts/dotfiles.sh
+.PHONY: gentoo node osx
 
 gentoo:
 	cd linux/gentoo && vagrant up && vagrant ssh
@@ -10,5 +7,4 @@ node:
 	scripts/node.sh
 
 osx:
-	$(MAKE) -C dotfiles
-	$(MAKE) -C node
+	scripts/shell.sh
