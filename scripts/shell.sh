@@ -32,9 +32,9 @@ ln -sf dotfiles/.xmonad .xmonad
 echo "[+] Sourcing files"
 . .bashrc
 
-echo "[+] Installing vim plugins"
 mkdir .vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
+echo "[+] Installing vim plugins"
 vim +PluginInstall +qall &>/dev/null
 
 echo "[+] Configuring YouCompleteMe"
@@ -44,7 +44,7 @@ cd .vim/bundle/YouCompleteMe
 cd
 
 echo "[+] Configuring NeoVim"
-mkdir -p .config && cd .config
-ln -sf ~/dotfiles/.vim nvim
+mkdir -p .config
+ln -sfh ../dotfiles/.vim .config/nvim
 
 cd "${STARTING_DIR}"
