@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Provision an OS X machine.
+# Provision a macOS machine.
 
 if [[ ${EUID} != 0 ]] ; then
   echo "This script must be run as root"
