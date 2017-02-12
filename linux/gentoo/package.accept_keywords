@@ -12,4 +12,4 @@ x11-drivers/xf86-video-virtualbox ~x86 ~amd64
 =dev-lua/messagepack-0.3.2 ~amd64
 
 # required by dev-vcs/git (argument)
-=dev-vcs/git-2.6.6 ~amd64
+=dev-vcs/git-2.10.2 ~amd64
