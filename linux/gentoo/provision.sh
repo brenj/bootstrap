@@ -35,8 +35,5 @@ done <"${PACKAGES_FILE}"
 
 cd
 
-echo "[+] Installing and configuring dev tools"
-for script in bootstrap/scripts/*; do
-  echo "Running script ${script}"
-  [ -f "${script}" ] && [ -x "${script}" ] && "${script}"
-done
+echo "[+] Installing and configuring environment"
+make -C bootstrap env
