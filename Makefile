@@ -1,12 +1,9 @@
-.PHONY: env gentoo git-prompt node shell
+.PHONY: env gentoo node shell
 
-env: shell git-prompt node
+env: shell node
 
 gentoo:
 	cd linux/gentoo && vagrant up && vagrant ssh
-
-git-prompt:
-	scripts/git-prompt.sh
 
 node:
 	scripts/node.sh
