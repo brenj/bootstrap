@@ -31,6 +31,14 @@ ln -sf dotfiles/.vim .vim
 ln -sf dotfiles/.eslintrc .eslintrc
 ln -sfh dotfiles/.xmonad .xmonad
 
+if [ -d "tools" ]; then
+  echo "[-] Removing existing tools directory"
+  rm -rf tools
+fi
+
+echo "[+] Cloning tools"
+git clone https://github.com/brenj/tools.git
+
 echo "[+] Sourcing files"
 . .bashrc
 
