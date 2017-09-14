@@ -2,7 +2,7 @@
 #
 # Install node and npm for development.
 
-NVM_VERSION="v0.30.2"
+NVM_VERSION="v0.33.4"
 RAW_URL="https://raw.githubusercontent.com"
 STARTING_DIR="$(pwd)"
 
