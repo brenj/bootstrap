@@ -2,7 +2,7 @@
 #
 # Configure my shell environment staples (dotfiles, vim, etc.).
 
-REPOS="dotfiles tools"
+REPOS="dotfiles dragon tools"
 STARTING_DIR="$(pwd)"
 
 cd
