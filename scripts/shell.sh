@@ -17,7 +17,7 @@ if [ -d "dotfiles" ]; then
 fi
 
 echo "[+] Cloning dotfiles"
-git clone https://github.com/brenj/dotfiles.git
+git clone git@github.com:brenj/dotfiles.git
 
 echo "[+] Configuring dotfiles"
 ln -sf dotfiles/.bashrc .bashrc
@@ -37,7 +37,7 @@ if [ -d "tools" ]; then
 fi
 
 echo "[+] Cloning tools"
-git clone https://github.com/brenj/tools.git
+git clone git@github.com:brenj/tools.git
 
 echo "[+] Sourcing files"
 . .bashrc
