@@ -2,6 +2,7 @@
 #
 # Configure my shell environment staples (dotfiles, vim, etc.).
 
+REPOS="dotfiles tools"
 STARTING_DIR="$(pwd)"
 
 cd
@@ -11,13 +12,14 @@ if [ -d ".vim" ]; then
   rm -rf .vim
 fi
 
-if [ -d "dotfiles" ]; then
-  echo "[-] Removing existing dotfiles directory"
-  rm -rf dotfiles
-fi
-
-echo "[+] Cloning dotfiles"
-git clone git@github.com:brenj/dotfiles.git
+for repo in ${REPOS}; do
+  if [ -d "${repo}" ]; then
+    echo "[-] Removing existing ${repo} directory"
+    rm -rf "${repo}"
+  fi
+  echo "[+] Cloning ${repo}"
+  git clone "git@github.com:brenj/${repo}.git"
+done
 
 echo "[+] Configuring dotfiles"
 ln -sf dotfiles/.bashrc .bashrc
@@ -30,14 +32,6 @@ ln -sf dotfiles/.vimrc .vimrc
 ln -sf dotfiles/.vim .vim
 ln -sf dotfiles/.eslintrc .eslintrc
 ln -sfh dotfiles/.xmonad .xmonad
-
-if [ -d "tools" ]; then
-  echo "[-] Removing existing tools directory"
-  rm -rf tools
-fi
-
-echo "[+] Cloning tools"
-git clone git@github.com:brenj/tools.git
 
 echo "[+] Sourcing files"
 . .bashrc
