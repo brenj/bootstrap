@@ -9,5 +9,5 @@ xcode-select --install &>/dev/null
 echo "[+] Installing packages"
 while read -r package; do
   echo "Brewing formula ${package}"
-  brew install "${package}" &>/dev/null
+  brew install "${package}"
 done <"${PACKAGES_FILE}"
