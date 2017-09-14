@@ -1,9 +1,10 @@
-.PHONY: env gentoo node shell
-
-env: shell node
+.PHONY: gentoo mac node shell
 
 gentoo:
 	cd linux/gentoo && vagrant up && vagrant ssh
+
+mac:
+	node shell
 
 node:
 	scripts/node.sh
