@@ -2,11 +2,6 @@
 #
 # Provision a macOS machine.
 
-if [[ ${EUID} != 0 ]] ; then
-  echo "This script must be run as root"
-  exit 1
-fi
-
 PACKAGES_FILE='packages'
 
 xcode-select --install &>/dev/null
