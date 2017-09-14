@@ -2,7 +2,7 @@
 #
 # Provision a macOS machine.
 
-PACKAGES_FILE='packages'
+PACKAGES_FILE='./macOS/packages'
 
 xcode-select --install &>/dev/null
 
