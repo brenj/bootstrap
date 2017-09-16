@@ -2,7 +2,8 @@
 #
 # Provision a macOS machine.
 
-PACKAGES_FILE='./macOS/packages'
+BREW_PACKAGES='./macOS/brew-packages'
+CASK_PACKAGES='./macOS/cask-packages'
 
 xcode-select --install &>/dev/null
 read -n 1 -p "[+] Waiting for developer-tools install. Done (y/n)?: " input
@@ -10,15 +11,18 @@ if [ "${input}" != 'y' ]; then
   exit 1
 fi
 
-echo "[+] Installing Brew"
+echo "[+] Installing Brew and Cask"
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew tap caskroom/cask
 
 echo "[+] Installing cask packages"
-brew tap caskroom/cask
-brew cask install xquartz
+while read -r package; do
+  echo "Brewing cask ${package}"
+  brew cask install "${package}"
+done <"${CASK_PACKAGES}"
 
 echo "[+] Installing brew packages"
 while read -r package; do
   echo "Brewing formula ${package}"
   brew install "${package}"
-done <"${PACKAGES_FILE}"
+done <"${BREW_PACKAGES}"
