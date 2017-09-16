@@ -1,7 +1,6 @@
 cmake
 ctags
 git
-httpie
 python
 macvim --with-override-system-vim
 neovim/neovim/neovim
