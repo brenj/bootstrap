@@ -36,4 +36,4 @@ git config --global user.email "${email}"
 cd
 
 echo "[+] Configuring mac"
-make -C bootstrap install_mac
+make -C bootstrap configure_mac
