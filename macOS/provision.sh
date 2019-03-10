@@ -32,3 +32,8 @@ read -p "Enter your GitHub name: " name
 git config --global user.name "${name}"
 read -p "Enter your GitHub email: " email
 git config --global user.email "${email}"
+
+cd
+
+echo "[+] Configuring mac"
+make -C bootstrap install_mac
