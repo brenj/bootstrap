@@ -35,5 +35,6 @@ done <"${PACKAGES_FILE}"
 
 cd
 
-echo "[+] Installing and configuring environment"
-make -C bootstrap env
+echo "[+] Configuring environment"
+make -C bootstrap configure_node
+make -C bootstrap configure_shell
