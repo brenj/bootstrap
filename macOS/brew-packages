@@ -1,8 +1,9 @@
 cmake
 ctags
 git
+keychain
 python
-macvim --with-override-system-vim
+macvim
 neovim/neovim/neovim
 node
 tmux
