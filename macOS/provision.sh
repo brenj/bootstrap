@@ -26,3 +26,9 @@ while read -r package; do
   echo "Brewing formula ${package}"
   brew install "${package}"
 done <"${BREW_PACKAGES}"
+
+echo "[+] Configuring git"
+read -p "Enter your GitHub name: " name
+git config --global user.name "${name}"
+read -p "Enter your GitHub email: " email
+git config --global user.email "${email}"
