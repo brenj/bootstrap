@@ -1,10 +1,15 @@
+bash
 cmake
 ctags
+fzf
 git
+go
 keychain
 python
 macvim
 neovim/neovim/neovim
 node
+reattach-to-user-namespace
+rust
 tmux
 wget
