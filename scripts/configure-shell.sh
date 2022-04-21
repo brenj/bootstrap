@@ -66,6 +66,9 @@ ln -sfh ../dotfiles/.vim .config/nvim
 echo "[+] Changing default shell to bash"
 chsh -s /bin/bash
 
+echo "[+] Add ssh keys to keychain"
+keychain ~/.ssh/
+
 echo "[+] Closing Terminal"
 cd "${STARTING_DIR}"
 read -p "Restart terminal to apply changes. Press enter to exit script "
