@@ -11,21 +11,16 @@ if [ "${input}" != 'y' ]; then
   exit 1
 fi
 
-echo "[+] Installing Brew and Cask"
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew tap caskroom/cask
+echo -e "\n[+] Installing Brew and Cask"
+sudo chown -R $(whoami) /usr/local/*
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew tap homebrew/cask
 
 echo "[+] Installing cask packages"
-while read -r package; do
-  echo "Brewing cask ${package}"
-  brew cask install "${package}"
-done <"${CASK_PACKAGES}"
+brew install $(cat "${CASK_PACKAGES}")
 
 echo "[+] Installing brew packages"
-while read -r package; do
-  echo "Brewing formula ${package}"
-  brew install "${package}"
-done <"${BREW_PACKAGES}"
+brew install $(cat "${BREW_PACKAGES}")
 
 echo "[+] Configuring git"
 read -p "Enter your GitHub name: " name
@@ -37,3 +32,10 @@ cd
 
 echo "[+] Configuring mac"
 make -C bootstrap configure_mac
+
+echo "[+] Removing bootstrap.zip"
+rm bootstrap.zip
+rm -rf bootstrap
+
+echo "[+] Cloning bootstrap.zip"
+git clone https://github.com/brenj/bootstrap.git
