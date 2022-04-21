@@ -1,10 +1,9 @@
 # bootstrap
-Bootstrap my development environment.
 
------
+Bootstrap development environment.
+----------------------------------
 
-Fresh macOS install use:
+## macOS:
 
-```bash
-curl -L https://github.com/brenj/bootstrap/archive/master.zip -o bootstrap.zip && unzip bootstrap.zip && mv bootstrap-master bootstrap && cd bootstrap && ./macOS/provision.sh
-```
+1. Setup GitHub SSH key
+2. `bash curl -L https://github.com/brenj/bootstrap/archive/master.zip -o bootstrap.zip && unzip bootstrap.zip && cd bootstrap-master && ./macOS/provision.sh`

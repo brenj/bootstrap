@@ -31,11 +31,8 @@ git config --global user.email "${email}"
 cd
 
 echo "[+] Configuring mac"
-make -C bootstrap configure_mac
+make -C bootstrap-master configure_mac
 
-echo "[+] Removing bootstrap.zip"
+echo "[+] Removing bootstrap files"
 rm bootstrap.zip
-rm -rf bootstrap
-
-echo "[+] Cloning bootstrap.zip"
-git clone https://github.com/brenj/bootstrap.git
+rm -rf bootstrap-master

@@ -2,7 +2,7 @@
 #
 # Configure my shell environment staples (dotfiles, vim, etc.).
 
-REPOS="dotfiles tools"
+REPOS="bootstrap dotfiles tools"
 STARTING_DIR="$(pwd)"
 
 cd
@@ -25,7 +25,7 @@ for repo in ${REPOS}; do
     rm -rf "${repo}"
   fi
   echo "[+] Cloning ${repo}"
-  git clone "https://github.com/brenj/${repo}.git"
+  git clone "git@github.com:brenj/${repo}.git"
 done
 
 echo "[+] Configuring dotfiles"
