@@ -2,14 +2,21 @@
 #
 # Configure my shell environment staples (dotfiles, vim, etc.).
 
-REPOS="dotfiles dragon tools"
+REPOS="dotfiles tools"
 STARTING_DIR="$(pwd)"
 
 cd
 
+if [ -d ".tmux" ]; then
+  echo "[-] Removing existing .tmux directory"
+  rm -rf .tmux
+  mkdir .tmux
+fi
+
 if [ -d ".vim" ]; then
   echo "[-] Removing existing .vim directory"
   rm -rf .vim
+  mkdir .vim
 fi
 
 for repo in ${REPOS}; do
@@ -18,7 +25,7 @@ for repo in ${REPOS}; do
     rm -rf "${repo}"
   fi
   echo "[+] Cloning ${repo}"
-  git clone "git@github.com:brenj/${repo}.git"
+  git clone "https://github.com/brenj/${repo}.git"
 done
 
 echo "[+] Configuring dotfiles"
@@ -28,6 +35,7 @@ ln -sf dotfiles/.bash_profile .bash_profile
 ln -sf dotfiles/.gvimrc .gvimrc
 ln -sf dotfiles/.tern-config .tern-config
 ln -sf dotfiles/.tmux.conf .tmux.conf
+ln -sf dotfiles/.tmux .tmux
 ln -sf dotfiles/.vimrc .vimrc
 ln -sf dotfiles/.vim .vim
 ln -sf dotfiles/.eslintrc .eslintrc
@@ -36,14 +44,18 @@ ln -sfh dotfiles/.xmonad .xmonad
 echo "[+] Sourcing files"
 . .bashrc
 
-mkdir .vim/bundle
+mkdir -p .tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
+.tmux/plugins/tpm/bin/install_plugins
+
+mkdir -p .vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
 echo "[+] Installing vim plugins"
 vim +PluginInstall +qall &>/dev/null
 
 echo "[+] Configuring YouCompleteMe"
 cd .vim/bundle/YouCompleteMe
-./install.py --clang-completer --tern-completer
+./install.py --clang-completer --go-completer --rust-completer --tern-completer
 
 cd
 
@@ -51,4 +63,9 @@ echo "[+] Configuring NeoVim"
 mkdir -p .config
 ln -sfh ../dotfiles/.vim .config/nvim
 
+echo "[+] Changing default shell to bash"
+chsh -s /bin/bash
+
+echo "[+] Closing Terminal"
 cd "${STARTING_DIR}"
+read -p "Restart terminal to apply changes. Press enter to exit script "
