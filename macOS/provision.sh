@@ -34,5 +34,5 @@ echo "[+] Configuring mac"
 make -C bootstrap-master configure_mac
 
 echo "[+] Removing bootstrap files"
-rm bootstrap.zip
+rm bootstrap-archive.zip
 rm -rf bootstrap-master
