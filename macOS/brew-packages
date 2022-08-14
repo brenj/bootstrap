@@ -5,6 +5,7 @@ fzf
 git
 go
 keychain
+pyenv
 python
 macvim
 neovim/neovim/neovim
@@ -12,4 +13,5 @@ node
 reattach-to-user-namespace
 rust
 tmux
+tree
 wget

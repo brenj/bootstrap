@@ -69,6 +69,10 @@ chsh -s /bin/bash
 echo "[+] Add ssh keys to keychain"
 keychain ~/.ssh/
 
+echo "[+] Installing fzf key bindings and fuzzy completion"
+# Install useful key bindings and fuzzy completion
+$(brew --prefix)/opt/fzf/install
+
 echo "[+] Closing Terminal"
 cd "${STARTING_DIR}"
 read -p "Restart terminal to apply changes. Press enter to exit script "
