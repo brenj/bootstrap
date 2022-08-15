@@ -35,7 +35,6 @@ ln -sf dotfiles/.bash_profile .bash_profile
 ln -sf dotfiles/.gvimrc .gvimrc
 ln -sf dotfiles/.tern-config .tern-config
 ln -sf dotfiles/.tmux.conf .tmux.conf
-ln -sf dotfiles/.tmux .tmux
 ln -sf dotfiles/.vimrc .vimrc
 ln -sf dotfiles/.vim .vim
 ln -sf dotfiles/.eslintrc .eslintrc
