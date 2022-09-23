@@ -1,11 +1,17 @@
 bash
+bat
+black
 cmake
 ctags
+flake8
 fzf
 git
 go
+isort
+jq
 keychain
 pyenv
+pyenv-virtualenv
 python
 macvim
 neovim/neovim/neovim
@@ -15,3 +21,4 @@ rust
 tmux
 tree
 wget
+yamllint
