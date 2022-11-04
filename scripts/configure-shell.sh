@@ -47,16 +47,10 @@ mkdir -p .tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
 .tmux/plugins/tpm/bin/install_plugins
 
-mkdir -p .vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
 echo "[+] Installing vim plugins"
-vim +PluginInstall +qall &>/dev/null
-
-echo "[+] Configuring YouCompleteMe"
-cd .vim/bundle/YouCompleteMe
-./install.py --clang-completer --go-completer --rust-completer --tern-completer
-
-cd
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall --sync +qa &>/dev/null
 
 echo "[+] Configuring NeoVim"
 mkdir -p .config
