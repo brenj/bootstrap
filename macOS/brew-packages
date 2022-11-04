@@ -6,6 +6,7 @@ ctags
 flake8
 fzf
 git
+hadolint
 go
 isort
 jq
@@ -20,5 +21,6 @@ reattach-to-user-namespace
 rust
 tmux
 tree
+watch
 wget
 yamllint
