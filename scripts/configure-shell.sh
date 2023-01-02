@@ -57,7 +57,7 @@ mkdir -p .config
 ln -sfh ../dotfiles/.vim .config/nvim
 
 echo "[+] Changing default shell to bash"
-chsh -s /bin/bash
+chsh -s /usr/local/bin/bash "$USER"
 
 echo "[+] Add ssh keys to keychain"
 keychain ~/.ssh/
