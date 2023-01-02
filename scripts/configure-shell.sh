@@ -43,6 +43,11 @@ ln -sfh dotfiles/.xmonad .xmonad
 echo "[+] Sourcing files"
 . .bashrc
 
+echo "[+] Enabling tab autocomplete for git"
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+chmod +x ~/.git-completion.bash
+
+echo "[+] Installing tmux plugins"
 mkdir -p .tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
 .tmux/plugins/tpm/bin/install_plugins
