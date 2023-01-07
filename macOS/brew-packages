@@ -1,8 +1,11 @@
 bash
+bash-completion
 bat
 black
+brew-cask-completion
 cmake
 ctags
+docker-completion
 flake8
 fzf
 git
@@ -15,6 +18,7 @@ knqyf263/pet/pet
 macvim
 neovim/neovim/neovim
 node
+pip-completion
 pyenv
 pyenv-virtualenv
 python
@@ -23,6 +27,7 @@ ripgrep
 rust
 tmux
 tree
+vagrant-completion
 watch
 wget
 yamllint
