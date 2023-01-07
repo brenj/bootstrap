@@ -19,6 +19,7 @@ pyenv
 pyenv-virtualenv
 python
 reattach-to-user-namespace
+ripgrep
 rust
 tmux
 tree
