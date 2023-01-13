@@ -19,6 +19,8 @@ if [ -d ".vim" ]; then
   mkdir .vim
 fi
 
+mkdir -p .config
+
 for repo in ${REPOS}; do
   if [ -d "${repo}" ]; then
     echo "[-] Removing existing ${repo} directory"
@@ -37,7 +39,9 @@ ln -sf dotfiles/.tmux.conf .tmux.conf
 ln -sf dotfiles/.vimrc .vimrc
 ln -sf dotfiles/.vim .vim
 ln -sf dotfiles/.eslintrc .eslintrc
+ln -sfh dotfiles/.config/pet .config/pet
 ln -sfh dotfiles/.xmonad .xmonad
+ln -sfh dotfiles/.vim .config/nvim
 
 echo "[+] Sourcing files"
 . .bashrc
@@ -51,10 +55,6 @@ echo "[+] Installing vim plugins"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugInstall --sync +qa &>/dev/null
-
-echo "[+] Configuring NeoVim"
-mkdir -p .config
-ln -sfh ../dotfiles/.vim .config/nvim
 
 echo "[+] Changing default shell to bash"
 chsh -s /usr/local/bin/bash "$USER"
