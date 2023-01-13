@@ -39,9 +39,9 @@ ln -sf dotfiles/.tmux.conf .tmux.conf
 ln -sf dotfiles/.vimrc .vimrc
 ln -sf dotfiles/.vim .vim
 ln -sf dotfiles/.eslintrc .eslintrc
-ln -sfh dotfiles/.config/pet .config/pet
+ln -sfh ../dotfiles/.config/pet .config/pet
 ln -sfh dotfiles/.xmonad .xmonad
-ln -sfh dotfiles/.vim .config/nvim
+ln -sfh ../dotfiles/.vim .config/nvim
 
 echo "[+] Sourcing files"
 . .bashrc
