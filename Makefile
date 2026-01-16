@@ -1,4 +1,7 @@
-.PHONY: configure_mac configure_node configure_shell gentoo
+.PHONY: provision configure_mac configure_node configure_shell
+
+provision:
+	macOS/provision.sh
 
 configure_mac: configure_node configure_shell
 
@@ -7,6 +10,3 @@ configure_node:
 
 configure_shell:
 	scripts/configure-shell.sh
-
-gentoo:
-	cd linux/gentoo && vagrant up && vagrant ssh

@@ -1,19 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
-# Install node and npm for development.
+# Install node + npm for development
 
-NVM_VERSION="v0.39.1"
-RAW_URL="https://raw.githubusercontent.com"
-STARTING_DIR="$(pwd)"
+set -euo pipefail
+log() { printf "\n[+] %s\n" "$*"; }
 
-cd
+NVM_VERSION="v0.40.3"
+NVM_DIR="${HOME}/.nvm"
 
-echo "[+] Installing node"
-wget -q -O - ${RAW_URL}/creationix/nvm/${NVM_VERSION}/install.sh |bash
-. .nvm/nvm.sh
-nvm install node &>/dev/null && nvm current >.nvmrc
+if [ ! -d "$NVM_DIR" ]; then
+  log "Installing nvm ${NVM_VERSION}"
+  curl -fsSL "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash
+else
+  log "nvm already installed"
+fi
 
-export NVM_DIR="${HOME}/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# shellcheck disable=SC1090
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
-cd "${STARTING_DIR}"
+log "Installing latest Node"
+nvm install node >/dev/null
+nvm alias default node >/dev/null
+
+log "Done: node $(node -v), npm $(npm -v)"
