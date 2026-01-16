@@ -1,3 +1,0 @@
-app-editors/neovim python nvimpager
-app-editors/vim python vim-pager
-sys-libs/ncurses tinfo
