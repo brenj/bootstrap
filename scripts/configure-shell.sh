@@ -79,7 +79,7 @@ if [ ! -f "$HOME_DIR/.vim/autoload/plug.vim" ]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 log "Installing vim plugins"
-vim +PlugInstall +qall
+vim +PlugInstall +qall || warn "vim plugin install failed"
 
 # --- shell ---
 BREW_BASH="$(brew --prefix)/bin/bash"
@@ -94,8 +94,12 @@ if [ "${SHELL:-}" != "$DESIRED_SHELL" ]; then
 fi
 
 # --- keychain ---
-log "Adding ssh keys to keychain"
-keychain "$HOME_DIR/.ssh/"*
+if compgen -G "$HOME_DIR/.ssh/id_*" >/dev/null; then
+  log "Adding ssh keys to keychain"
+  keychain "$HOME_DIR"/.ssh/id_*
+else
+  warn "No SSH keys found in ~/.ssh — skipping keychain setup"
+fi
 
 log "Done. Backups (if any) are in: $BACKUP_DIR"
 cd "$STARTING_DIR"
