@@ -10,7 +10,6 @@ neovim/neovim/neovim
 pyenv
 pyenv-virtualenv
 ripgrep
-tmux
 tree
 vim
 watch
