@@ -11,6 +11,7 @@ HOME_DIR="$HOME"
 STARTING_DIR="$(pwd)"
 STAMP="$(date +%Y%m%d-%H%M%S)"
 BACKUP_DIR="$HOME_DIR/.bootstrap_backup/$STAMP"
+BREW_PREFIX="$(brew --prefix)"
 
 mkdir -p "$HOME_DIR/.config" "$BACKUP_DIR"
 
@@ -78,16 +79,36 @@ if [ ! -f "$HOME_DIR/.vim/autoload/plug.vim" ]; then
   curl -fLo "$HOME_DIR/.vim/autoload/plug.vim" --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
+
+# --- node ---
+export NVM_DIR="$HOME_DIR/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  # shellcheck disable=SC1090
+  source "$NVM_DIR/nvm.sh"
+fi
+
+# --- pyenv ---
+export PYENV_ROOT="$HOME_DIR/.pyenv"
+export PATH="$BREW_PREFIX/bin:$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 log "Installing vim plugins"
-vim +PlugInstall +qall || warn "vim plugin install failed"
+vim -E -s +PlugInstall +qall || warn "vim plugin install failed"
 
 # --- shell ---
-BREW_BASH="$(brew --prefix)/bin/bash"
+BREW_BASH="$BREW_PREFIX/bin/bash"
+
+if [ -x "$BREW_BASH" ] && ! grep -q "^${BREW_BASH}$" /etc/shells; then
+  log "Adding $BREW_BASH to /etc/shells"
+  echo "$BREW_BASH" | sudo tee -a /etc/shells >/dev/null
+fi
+
 if [ -x "$BREW_BASH" ] && grep -q "^${BREW_BASH}$" /etc/shells; then
   DESIRED_SHELL="$BREW_BASH"
 else
   DESIRED_SHELL="/bin/bash"
 fi
+
 if [ "${SHELL:-}" != "$DESIRED_SHELL" ]; then
   log "Setting default shell to $DESIRED_SHELL"
   chsh -s "$DESIRED_SHELL" "$USER" || warn "Could not change shell (needs password / permissions)"
@@ -96,7 +117,7 @@ fi
 # --- keychain ---
 if compgen -G "$HOME_DIR/.ssh/id_*" >/dev/null; then
   log "Adding ssh keys to keychain"
-  keychain "$HOME_DIR"/.ssh/id_*
+  keychain $(ls "$HOME_DIR"/.ssh/id_* | grep -v '\.pub$') || warn "Failed to add ssh keys"
 else
   warn "No SSH keys found in ~/.ssh — skipping keychain setup"
 fi

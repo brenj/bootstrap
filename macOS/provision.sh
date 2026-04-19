@@ -61,11 +61,24 @@ if ! git config --global user.email >/dev/null; then
   git config --global user.email "$email"
 fi
 
-# ---- Configure shell + node ----
-log "Configuring shell environment"
-./scripts/configure-shell.sh
-
+# ---- Configure node + python + shell ----
 log "Configuring node environment"
-./scripts/configure-node.sh
+bash ./scripts/configure-node.sh
+
+log "Configuring python environment"
+bash ./scripts/configure-python.sh
+
+log "Configuring shell environment"
+bash ./scripts/configure-shell.sh
+
+# ---- macOS keyboard behavior ----
+log "Configuring macOS keyboard settings"
+# Disable press-and-hold (enable key repeat)
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+# Faster key repeat (lower = faster)
+defaults write -g InitialKeyRepeat -int 15
+defaults write -g KeyRepeat -int 2
 
 log "Provision complete"
+log "Open a new terminal, or run: exec /opt/homebrew/bin/bash -l"
