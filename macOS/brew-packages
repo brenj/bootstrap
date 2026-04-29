@@ -12,6 +12,7 @@ pyenv
 pyenv-virtualenv
 ripgrep
 tree
+uv
 vim
 watch
 wget
